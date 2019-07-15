@@ -5,16 +5,25 @@
  */
 package jtt2;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 /**
  *
  * @author max
  */
 public class Still extends GameEntity{
     private final ObjectPool obj;
+    protected List<HashMap> coords=new ArrayList<>();
      
     public Still(ObjectPool obj){
         super(obj);
         this.obj=obj;
+    }
+    
+    public void addShapeToStill(List<HashMap> shapeCoords){
+        coords.addAll(shapeCoords);
     }
     
     @Override

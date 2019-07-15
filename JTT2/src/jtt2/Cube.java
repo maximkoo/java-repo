@@ -6,7 +6,6 @@
 package jtt2;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class Cube extends Shape{
     public Cube(ObjectPool obj){

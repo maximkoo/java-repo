@@ -31,7 +31,6 @@ public class Shape extends GameEntity{
     public void process(){
         this.move("down");
         System.out.println("Shape processed, class="+this.getClass().getName());   
-        //int maxY=coords.entrySet().stream().max((entry1, entry2)->entry1.getValue()>entry2.getValue()? 1: -1).get().getValue();
         Integer maxY=(Integer)coords.stream().max((a1,a2)->(Integer)a1.get("y")>(Integer)a2.get("y")?1:-1).get().get("y");
         System.out.println(maxY);
         if (maxY>10) {
@@ -46,7 +45,10 @@ public class Shape extends GameEntity{
         }
     }
     
-    public void inform(){ //notify
+    @Override
+    public void inform(String message){ //notify
+        if (message.equals("move_left")){this.move("left");}
+        if (message.equals("move_right")){this.move("right");}
     };
     
     public void printCoords(){

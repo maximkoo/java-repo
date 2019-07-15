@@ -5,6 +5,8 @@
  */
 package jtt2;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Calendar;
 import javax.swing.JFrame;
 
@@ -13,7 +15,6 @@ import javax.swing.JFrame;
  * @author max
  */
 public class JTT2 {
-
     boolean go=true;
     private JFrame f=new JFrame();
     ObjectPool obj=new ObjectPool();
@@ -21,8 +22,9 @@ public class JTT2 {
     GameEntity a;
     public JTT2(){
     a=new Score(obj);
-    //a=new Cube(entities);
+    //a=new Cube(obj);
     a=new TShape(obj);
+    
     a=new Still(obj);
         
     f.setSize(500,500);
@@ -30,6 +32,8 @@ public class JTT2 {
     f.add(panel1);
     f.setVisible(true);
         
+    f.addKeyListener(new KeyListener1());
+    
     Calendar c1 = Calendar.getInstance();
     Calendar c2 = c1;
     c2.add(Calendar.SECOND, 1);
@@ -47,6 +51,7 @@ public class JTT2 {
             i++;            
         }
         if (i>10){go=false;}        
+            //{a=new TShape(obj);}
         }        
     };
     
@@ -59,6 +64,27 @@ public class JTT2 {
     public static void main(String[] args) {
         // TODO code application logic here
         JTT2 j= new JTT2();
+    }
+
+    private class KeyListener1 implements KeyListener {
+
+        public KeyListener1() {
+        }
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode()==KeyEvent.VK_LEFT) {obj.informObjects("move_left");}
+            if (e.getKeyCode()==KeyEvent.VK_RIGHT) {obj.informObjects("move_right");}
+            panel1.repaint();
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+        }
     }
     
 }
