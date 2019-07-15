@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            function btn4Click(){
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', '/JavaSrv/Srvlt3', false);
+                xhr.send();
+                if (xhr.status !== 200) {
+                    alert( xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
+                } else {
+                    document.getElementById("div4").innerHTML=xhr.responseText;
+                }
+            }
+            
+            function btn5Click(){
+                $.ajax({url: "/JavaSrv/Srvlt3", dataType: "json", success: function(response){                    
+                    var text=JSON.stringify(response);
+                    $("#div5").html(text);
+                }});
+            }
+        </script>
+    </head>
+    <body>
+    <a href="/JavaSrv/Srvlt1">NetBeans generated servlet</a><br>
+    <a href="/JavaSrv/Srvlt2">Simple hand-made servlet</a><br>
+    <a href="/JavaSrv/Srvlt3">Servlet returns JSON</a><br>
+    <input type="button" id="btn4" onclick="btn4Click();" value="Servlet returns JSON via AJAX call"/>
+    <div id="div4"></div><br>
+    <input type="button" id="btn5" onclick="btn5Click();" value="Servlet returns JSON via AJAX call in jQuery"/>
+    <div id="div5"></div><br>
+    </body>
+</html>
