@@ -20,8 +20,11 @@ class GameEntity {
     };
     
     public void inform(String message){
-        
-    }
+    };
+    
+    public void informPayload(String message, Object payload){
+    };
+    
     
     public void draw(Graphics g){
         

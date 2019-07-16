@@ -34,7 +34,8 @@ public class Shape extends GameEntity{
         Integer maxY=(Integer)coords.stream().max((a1,a2)->(Integer)a1.get("y")>(Integer)a2.get("y")?1:-1).get().get("y");
         System.out.println(maxY);
         if (maxY>10) {
-            obj.informObjects("Landed");
+            //obj.informObjects("Landed");
+            obj.informObjectsPayload("Landed", (Object)coords);
         }
     }
     
@@ -67,11 +68,11 @@ public class Shape extends GameEntity{
             i.put("x",(Integer)i.get("x")+xshift);
             i.put("y",(Integer)i.get("y")+yshift);
         }
-        System.out.println("----");
-        for (HashMap i:coords){
-            System.out.println("x="+i.get("x")+", y="+i.get("y"));
-        }
-        System.out.println("----");
+        //System.out.println("----");
+        //for (HashMap i:coords){
+        //    System.out.println("x="+i.get("x")+", y="+i.get("y"));
+        //}
+        //System.out.println("----");
         //repaint();
     }    
 }

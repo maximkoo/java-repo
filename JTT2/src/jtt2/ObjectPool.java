@@ -27,6 +27,12 @@ public class ObjectPool {
         }
     }
     
+    public void informObjectsPayload(String message, Object payload){
+        for (GameEntity i: entities){
+            i.informPayload(message, payload);
+        }
+    }
+    
     public void drawObjects(Graphics g){
         for (GameEntity i: entities){
             i.draw(g);
