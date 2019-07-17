@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 public class JTT2 {
     boolean go=true;
     private JFrame f=new JFrame(); 
-    int gfXSize=10; int gfYSize=20;
+    int gfXSize=10; int gfYSize=20; 
     
     ObjectPool obj=new ObjectPool();
     public JPanel1 panel1=new JPanel1(obj);
