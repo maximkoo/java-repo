@@ -10,8 +10,10 @@ import java.util.HashMap;
 public class Cube extends Shape{
     public Cube(ObjectPool obj){
         super(obj);
-        XSize=2;
-        YSize=2;
+        xSize=2;
+        ySize=2;
+        xPos=10;
+        yPos=0;
         HashMap<String, Integer> h;
         h=new HashMap<>(); h.put("x", 0); h.put("y", 0); coords.add(h);
         h=new HashMap<>(); h.put("x", 1); h.put("y", 0); coords.add(h);
