@@ -17,9 +17,9 @@ import java.util.List;
  */
 public class Shape extends GameEntity{
     protected int xSize=0;
-    protected int ySize=0;  
-    protected int xPos=0;
-    protected int yPos=0;
+    protected int ySize=0; 
+    int xPos=10;
+    int yPos=10;
     protected int scale=10;
     protected List<HashMap> coords=new ArrayList<>();    
     protected int shapeColor;
@@ -50,6 +50,11 @@ public class Shape extends GameEntity{
     }
     
     @Override
+    public List<HashMap> getCoords(){
+        return coords;
+    }
+    
+    @Override
     public void inform(String message){ //notify
         if (message.equals("move_left")){this.move("left");}
         if (message.equals("move_right")){this.move("right");}
@@ -64,6 +69,7 @@ public class Shape extends GameEntity{
     
     public void move(String dir){ 
         if (!checkMovement(dir, xPos, yPos, coords)) return;
+        if (!checkOnStill(xPos, yPos, coords)) return;
         Integer[] a=move(dir, new Integer[]{xPos,yPos});
         xPos=a[0];
         yPos=a[1];
@@ -138,5 +144,17 @@ public class Shape extends GameEntity{
         return result; 
     }
     
+    private boolean checkOnStill(int xPos, int yPos, List<HashMap> c){
+        boolean result=obj.checkIntersection(xPos, yPos, c);
+        return result;
+    }  
+    
+     public int getXPos(){
+        return xPos;
+    }
+
+    public int getYPos(){
+        return yPos;
+    }
     
 }

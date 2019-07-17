@@ -6,12 +6,15 @@
 package jtt2;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  *
  * @author max
  */
-class GameEntity {
+abstract class GameEntity {
     public GameEntity(ObjectPool obj){
         obj.registerEntity(this);
     };
@@ -28,4 +31,17 @@ class GameEntity {
     public void draw(Graphics g){
         
     }
+    
+    public List<HashMap> getCoords(){
+        return new ArrayList<HashMap>();
+    }
+    
+    public int getXPos(){
+        return 0;
+    }
+
+    public int getYPos(){
+        return 0;
+    }
+   
 }

@@ -12,7 +12,7 @@ public class TShape extends Shape{
         super(obj);
         xSize=3;
         ySize=3;   
-        xPos=0;
+        xPos=10;
         yPos=0;
         HashMap<String, Integer> h;
         h=new HashMap<>(); h.put("x", 1); h.put("y", 0); coords.add(h);

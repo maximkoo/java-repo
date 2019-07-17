@@ -7,6 +7,7 @@ package jtt2;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -41,5 +42,28 @@ public class ObjectPool {
     
     public List<GameEntity> getEntities(){
         return entities;
+    }
+    
+    public boolean checkIntersection(int xPos, int yPos, List<HashMap> c){
+        boolean result=true;        
+        for (GameEntity g: entities){
+            if (!g.getClass().getSimpleName().equals("Still")) continue;
+            System.out.println("Still entity detected");
+            for (HashMap i:c){
+                for (HashMap j:g.getCoords()){
+//                    System.out.println("x1="+((int)xPos+(int)(i.get("x"))));
+//                    System.out.println("x2="+((int)g.getXPos()+(int)(j.get("x"))));
+//                    System.out.println("y1="+((int)yPos+(int)(i.get("y"))));
+//                    System.out.println("y2="+((int)g.getYPos()+(int)(j.get("y"))));
+//                    System.out.println("---");
+                    if (((int)xPos+(int)(i.get("x")))==(((int)g.getXPos()+(int)(j.get("x")))) && (yPos+(int)(i.get("y")))==(((int)g.getYPos()+(int)(j.get("y"))))){
+                        result=false;
+                        System.out.println("Intersection false");
+                    }
+                }
+                //System.out.println("-------");
+            }
+        }
+        return result;
     }
 }

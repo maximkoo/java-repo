@@ -1,10 +1,12 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package jtt2;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,10 +20,28 @@ import java.util.stream.Collectors;
 public class Still extends GameEntity{
     private final ObjectPool obj;
     protected List<HashMap> coords=new ArrayList<>();
-     
+    //////////////
+        int xSize=10;
+        int ySize=10;
+        int xPos=10;
+        int yPos=10;
+        int scale=Constants.scale;
+    
+    /////////////
     public Still(ObjectPool obj){
         super(obj);
         this.obj=obj;
+        ////
+        HashMap<String, Integer> h;
+        h=new HashMap<>(); h.put("x", 0); h.put("y", 0); coords.add(h);
+        h=new HashMap<>(); h.put("x", 1); h.put("y", 0); coords.add(h);
+        h=new HashMap<>(); h.put("x", 0); h.put("y", 1); coords.add(h);
+        h=new HashMap<>(); h.put("x", 1); h.put("y", 1); coords.add(h); 
+        h=new HashMap<>(); h.put("x", 2); h.put("y", 0); coords.add(h);
+        h=new HashMap<>(); h.put("x", 3); h.put("y", 0); coords.add(h);
+        h=new HashMap<>(); h.put("x", 2); h.put("y", 1); coords.add(h);
+        h=new HashMap<>(); h.put("x", 3); h.put("y", 1); coords.add(h); 
+        ////
     }
     
     public void addShapeToStill(List<HashMap> shapeCoords){
@@ -31,6 +51,18 @@ public class Still extends GameEntity{
     @Override
     public void process(){
         System.out.println("Entity processed, class="+this.getClass().getName());     
+    }
+    
+    public void draw(Graphics g){
+        g.setColor(Color.BLUE);
+        for (HashMap i:coords){
+            g.fillRect(xPos*scale+(Integer)i.get("x")*scale, yPos*scale+(Integer)i.get("y")*scale, scale, scale);
+        }
+    }
+    
+    @Override
+    public List<HashMap> getCoords(){
+        return coords;
     }
     
     @Override
@@ -75,11 +107,6 @@ public class Still extends GameEntity{
     
     };
     
-    public boolean checkIntersection(List<HashMap> c){
-        for (HashMap i:coords)
-        return true;
-    }
-    
     private void getAllXByY(){
     
     }
@@ -88,5 +115,13 @@ public class Still extends GameEntity{
         if ((Integer)h1.get("y")>(Integer)h2.get("y")){return 1;}
         else if ((Integer)h1.get("y")==(Integer)h2.get("y") && (Integer)h1.get("x")>(Integer)h2.get("x")){return 1;}
         else return -1;
+    }
+    
+    public int getXPos(){
+        return xPos;
+    }
+
+    public int getYPos(){
+        return yPos;
     }
 }
