@@ -75,6 +75,11 @@ public class Still extends GameEntity{
     
     };
     
+    public boolean checkIntersection(List<HashMap> c){
+        for (HashMap i:coords)
+        return true;
+    }
+    
     private void getAllXByY(){
     
     }

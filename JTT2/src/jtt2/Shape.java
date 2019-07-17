@@ -119,17 +119,17 @@ public class Shape extends GameEntity{
         
         //coords2.addAll(coords); //Так нельзя ((
        
-        for (HashMap i:coords){
+        for (HashMap i:coords){//Клонирование вручную ))
             HashMap c2=new HashMap();
             c2.put("x",i.get("x"));
             c2.put("y",i.get("y"));
             coords2.add(c2);
         }
         coords2=rotate(coords2);
-        System.out.println("Coords2");
-        for (HashMap i:coords2){
-            System.out.println("x="+i.get("x")+", y="+i.get("y"));
-        }
+//        System.out.println("Coords2");
+//        for (HashMap i:coords2){
+//            System.out.println("x="+i.get("x")+", y="+i.get("y"));
+//        }
         for (HashMap i: coords2){
             if (xPos+(Integer)(i.get("x"))<0+Constants.gfBorderLeft) result=false;
             if (xPos+(Integer)(i.get("x"))>Constants.gfXSize-Constants.gfBorderRight) result=false;
