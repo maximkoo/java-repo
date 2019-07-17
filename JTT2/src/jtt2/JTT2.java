@@ -25,8 +25,7 @@ public class JTT2 {
     public JTT2(){
     a=new Score(obj);
     //a=new Cube(obj);
-    a=new TShape(obj);
-    
+    a=new TShape(obj);    
     a=new Still(obj);
         
     f.setSize(500,500);
