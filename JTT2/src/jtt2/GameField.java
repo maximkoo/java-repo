@@ -13,8 +13,9 @@ import java.awt.Graphics;
 public class GameField extends GameEntity{
 
     private final ObjectPool obj;
-    int gfXSize=20; int gfYSize=40;
-    int scale=10;
+    int gfXSize=Constants.gfXSize; 
+    int gfYSize=Constants.gfYSize;
+    int scale=Constants.scale;
 
     public GameField(ObjectPool obj) {
         super(obj);

@@ -55,7 +55,7 @@ public class JTT2 {
                 c2.add(Calendar.SECOND, 1);
                 i++;            
             }
-            if (i>10){go=false;}        
+            if (i>100){go=false;}        
                 //{a=new TShape(obj);}
             }        
         };
