@@ -20,6 +20,8 @@ public class Shape extends GameEntity{
     protected int ySize=0; 
     int xPos=10;
     int yPos=10;
+    protected int nextXPos;
+    protected int nextYPos;
     protected int scale=10;
     protected List<HashMap> coords=new ArrayList<>();    
     protected int shapeColor;
@@ -72,17 +74,22 @@ public class Shape extends GameEntity{
     public void move(String dir){ 
         Integer[] a=move(dir, new Integer[]{xPos,yPos});
         
-        if (!checkMovement(dir, xPos, yPos, coords)) return;
+        //if (!checkMovement(dir, xPos, yPos, coords)) return;
+        if (!checkBorder(a[0], a[1], coords)) return;
         if (!checkOnStill(a[0], a[1], coords)) return;    
+        //if (!checkOnStill(nextXPos, nextYPos, coords)) return;    
         xPos=a[0];
         yPos=a[1];
+        //xPos=nextXPos;
+        //yPos=nextYPos;
     }   
     
     public void fall(){ 
         String dir="down";
         Integer[] a=move(dir, new Integer[]{xPos,yPos});
         
-        if (!checkMovement(dir, xPos, yPos, coords)) //return;
+//        if (!checkMovement(dir, xPos, yPos, coords)) //return;
+        if (!checkBorder(a[0], a[1], coords)) //return;
             {
                 obj.informObjectsPayload("Landed", (Object)this);
                 obj.generate();
@@ -97,6 +104,8 @@ public class Shape extends GameEntity{
         
         xPos=a[0];
         yPos=a[1];
+        //xPos=nextXPos;
+        //yPos=nextYPos;
     }   
     
     private Integer[] move(String dir, Integer[] pos){
@@ -109,13 +118,16 @@ public class Shape extends GameEntity{
         pos[0]=pos[0]+xShift;
         pos[1]=pos[1]+yShift;
         //yPos+=yShift;
+        nextXPos=pos[0]+xShift;
+        nextYPos=pos[1]+yShift;
         return pos;
     }
     
     public void rotate(){
         List<HashMap> coords2=rotate(this.coords);
         
-        if (!checkRotation(this.coords)) return;
+        //if (!checkRotation(this.coords)) return;
+        if (!checkBorder(xPos, yPos, coords2)) return;
         if (!checkOnStill(xPos, yPos, coords2)) return;
         
         coords=coords2;
@@ -137,12 +149,9 @@ public class Shape extends GameEntity{
         return coords2;
     }
     
-    private boolean checkMovement(String dir, int xPos, int yPos, List<HashMap> coords){
+    private boolean checkBorder(int xPos2, int yPos2, List<HashMap> coords2){
         boolean result=true; 
-        Integer[] a=move(dir, new Integer[]{xPos,yPos});
-        int xPos2=a[0];
-        int yPos2=a[1];
-        for (HashMap i: coords){
+        for (HashMap i: coords2){
             if (xPos2+(Integer)(i.get("x"))<0+Constants.gfBorderLeft) result=false;
             if (xPos2+(Integer)(i.get("x"))>Constants.gfXSize-Constants.gfBorderRight) result=false;
             if (yPos2+(Integer)(i.get("y"))>Constants.gfYSize-Constants.gfBorderRight) result=false;
@@ -150,31 +159,44 @@ public class Shape extends GameEntity{
         return result; 
     }
     
-    private boolean checkRotation(List<HashMap> coords){
-        boolean result=true; 
-        
-        List<HashMap> coords2=new ArrayList<HashMap>();
-        
-        //coords2.addAll(coords); //Так нельзя ((
-       
-        for (HashMap i:coords){//Клонирование вручную ))
-            HashMap c2=new HashMap();
-            c2.put("x",i.get("x"));
-            c2.put("y",i.get("y"));
-            coords2.add(c2);
-        }
-        coords2=rotate(coords2);
-//        System.out.println("Coords2");
-//        for (HashMap i:coords2){
-//            System.out.println("x="+i.get("x")+", y="+i.get("y"));
+//    private boolean checkMovement(String dir, int xPos, int yPos, List<HashMap> coords){
+//        boolean result=true; 
+//        Integer[] a=move(dir, new Integer[]{xPos,yPos});
+//        int xPos2=a[0];
+//        int yPos2=a[1];
+//        for (HashMap i: coords){
+//            if (xPos2+(Integer)(i.get("x"))<0+Constants.gfBorderLeft) result=false;
+//            if (xPos2+(Integer)(i.get("x"))>Constants.gfXSize-Constants.gfBorderRight) result=false;
+//            if (yPos2+(Integer)(i.get("y"))>Constants.gfYSize-Constants.gfBorderRight) result=false;
+//        } 
+//        return result; 
+//    }
+    
+//    private boolean checkRotation(List<HashMap> coords){
+//        boolean result=true; 
+//        
+//        List<HashMap> coords2=new ArrayList<HashMap>();
+//        
+//        //coords2.addAll(coords); //Так нельзя ((
+//       
+//        for (HashMap i:coords){//Клонирование вручную ))
+//            HashMap c2=new HashMap();
+//            c2.put("x",i.get("x"));
+//            c2.put("y",i.get("y"));
+//            coords2.add(c2);
 //        }
-        for (HashMap i: coords2){
-            if (xPos+(Integer)(i.get("x"))<0+Constants.gfBorderLeft) result=false;
-            if (xPos+(Integer)(i.get("x"))>Constants.gfXSize-Constants.gfBorderRight) result=false;
-            if (yPos+(Integer)(i.get("y"))>Constants.gfYSize-Constants.gfBorderRight) result=false;
-        } 
-        return result; 
-    }
+//        coords2=rotate(coords2);
+////        System.out.println("Coords2");
+////        for (HashMap i:coords2){
+////            System.out.println("x="+i.get("x")+", y="+i.get("y"));
+////        }
+//        for (HashMap i: coords2){
+//            if (xPos+(Integer)(i.get("x"))<0+Constants.gfBorderLeft) result=false;
+//            if (xPos+(Integer)(i.get("x"))>Constants.gfXSize-Constants.gfBorderRight) result=false;
+//            if (yPos+(Integer)(i.get("y"))>Constants.gfYSize-Constants.gfBorderRight) result=false;
+//        } 
+//        return result; 
+//    }
     
     private boolean checkOnStill(int xPos, int yPos, List<HashMap> c){
         boolean result=obj.checkIntersection(xPos, yPos, c);
@@ -184,13 +206,13 @@ public class Shape extends GameEntity{
     private void drop(){
           do {
               //move("down");
-              fall();
-              System.out.println("Dropping: yPos="+yPos);
+              //fall();
+              yPos+=1;
              }
-          while (checkMovement("down", xPos, yPos, coords));
+          while ((checkBorder(xPos, yPos+1, coords) && checkOnStill(xPos, yPos+1, coords)));
     }
     
-     public int getXPos(){
+    public int getXPos(){
         return xPos;
     }
 
