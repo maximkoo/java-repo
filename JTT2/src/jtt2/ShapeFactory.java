@@ -14,14 +14,14 @@ import java.util.logging.Logger;
 public class ShapeFactory {
 
     private final ObjectPool obj;
-    String[] shapeTypes={/*"Cube", */"TShape", "Stick"};
+    String[] shapeTypes={"Cube", "TShape", "Stick", "Corner1", "Corner2", "ZShape1", "ZShape2"};
     public ShapeFactory(ObjectPool obj){
         this.obj=obj;
     }
     
     public Shape generate() {
         float a=(float) (Math.random()*shapeTypes.length);
-        System.out.println("a="+a);
+        //System.out.println("a="+a);
         Shape s = null;//=new Shape(obj);
          try {
             s = (Shape)Class.forName("jtt2."+shapeTypes[(int)a]).getConstructor(ObjectPool.class).newInstance(obj);

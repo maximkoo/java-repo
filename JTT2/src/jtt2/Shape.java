@@ -31,14 +31,15 @@ public class Shape extends GameEntity{
     
     @Override
     public void process(){
-        this.move("down"); //--<<---!!!
+        //this.move("down"); //--<<---!!!
+        this.fall();
         System.out.println("Shape processed, class="+this.getClass().getName());   
         Integer maxY=(Integer)coords.stream().max((a1,a2)->(Integer)a1.get("y")>(Integer)a2.get("y")?1:-1).get().get("y");
         System.out.println("maxY="+(yPos+maxY));
-        if (yPos+maxY>Constants.gfYSize-1) {
+        //if (yPos+maxY>Constants.gfYSize-1) {
             //obj.informObjects("Landed");
-            obj.informObjectsPayload("Landed", (Object)coords);
-        }
+            //obj.informObjectsPayload("Landed", (Object)coords);
+        //}
     }
     
     @Override
@@ -59,6 +60,7 @@ public class Shape extends GameEntity{
         if (message.equals("move_left")){this.move("left");}
         if (message.equals("move_right")){this.move("right");}
         if (message.equals("rotate")){this.rotate();}
+        if (message.equals("drop")){this.drop();}
     };
     
     public void printCoords(){
@@ -68,14 +70,36 @@ public class Shape extends GameEntity{
     }
     
     public void move(String dir){ 
-        if (!checkMovement(dir, xPos, yPos, coords)) return;
-        if (!checkOnStill(xPos, yPos, coords)) return;
         Integer[] a=move(dir, new Integer[]{xPos,yPos});
+        
+        if (!checkMovement(dir, xPos, yPos, coords)) return;
+        if (!checkOnStill(a[0], a[1], coords)) return;    
         xPos=a[0];
         yPos=a[1];
     }   
     
-    public Integer[] move(String dir, Integer[] pos){
+    public void fall(){ 
+        String dir="down";
+        Integer[] a=move(dir, new Integer[]{xPos,yPos});
+        
+        if (!checkMovement(dir, xPos, yPos, coords)) //return;
+            {
+                obj.informObjectsPayload("Landed", (Object)this);
+                obj.generate();
+                return;
+            }
+        if (!checkOnStill(a[0], a[1], coords)) //return;
+            {
+                obj.informObjectsPayload("Landed", (Object)this);
+                obj.generate();
+                return;
+            }
+        
+        xPos=a[0];
+        yPos=a[1];
+    }   
+    
+    private Integer[] move(String dir, Integer[] pos){
         int xShift=0; int yShift=0;
         //if (dir.equals("up")){xShift=0; yShift=-1;}
         if (dir.equals("down")){xShift=0; yShift=1;}
@@ -89,20 +113,28 @@ public class Shape extends GameEntity{
     }
     
     public void rotate(){
-        if (!checkRotation(coords)) return;
-        this.coords=rotate(this.coords);
+        List<HashMap> coords2=rotate(this.coords);
+        
+        if (!checkRotation(this.coords)) return;
+        if (!checkOnStill(xPos, yPos, coords2)) return;
+        
+        coords=coords2;
         System.out.println("Rotated");
         printCoords();
     }
     
-    public List<HashMap> rotate(List<HashMap> coords){
+    private List<HashMap> rotate(List<HashMap> coords){
         //coords.stream().map(i->XSize-(Integer)(i.get("y")), (Integer)i.get(x))
+        List<HashMap> coords2=new ArrayList<HashMap>();
+        
         for (HashMap i:coords){
+            HashMap h=new HashMap();
             int xs=(Integer)(i.get("x"));
-            i.put("x", (xSize-1)-(Integer)(i.get("y")));
-            i.put("y", xs);
+            h.put("x", (xSize-1)-(Integer)(i.get("y")));
+            h.put("y", xs);
+            coords2.add(h);
         }
-        return coords;
+        return coords2;
     }
     
     private boolean checkMovement(String dir, int xPos, int yPos, List<HashMap> coords){
@@ -148,6 +180,15 @@ public class Shape extends GameEntity{
         boolean result=obj.checkIntersection(xPos, yPos, c);
         return result;
     }  
+    
+    private void drop(){
+          do {
+              //move("down");
+              fall();
+              System.out.println("Dropping: yPos="+yPos);
+             }
+          while (checkMovement("down", xPos, yPos, coords));
+    }
     
      public int getXPos(){
         return xPos;

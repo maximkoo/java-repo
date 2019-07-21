@@ -21,10 +21,10 @@ public class Still extends GameEntity{
     private final ObjectPool obj;
     protected List<HashMap> coords=new ArrayList<>();
     //////////////
-        int xSize=10;
-        int ySize=10;
-        int xPos=10;
-        int yPos=10;
+//        int xSize=10;
+//        int ySize=10;
+        int xPos=0;
+        int yPos=0;
         int scale=Constants.scale;
     
     /////////////
@@ -32,20 +32,28 @@ public class Still extends GameEntity{
         super(obj);
         this.obj=obj;
         ////
-        HashMap<String, Integer> h;
-        h=new HashMap<>(); h.put("x", 0); h.put("y", 0); coords.add(h);
-        h=new HashMap<>(); h.put("x", 1); h.put("y", 0); coords.add(h);
-        h=new HashMap<>(); h.put("x", 0); h.put("y", 1); coords.add(h);
-        h=new HashMap<>(); h.put("x", 1); h.put("y", 1); coords.add(h); 
-        h=new HashMap<>(); h.put("x", 2); h.put("y", 0); coords.add(h);
-        h=new HashMap<>(); h.put("x", 3); h.put("y", 0); coords.add(h);
-        h=new HashMap<>(); h.put("x", 2); h.put("y", 1); coords.add(h);
-        h=new HashMap<>(); h.put("x", 3); h.put("y", 1); coords.add(h); 
+//        HashMap<String, Integer> h;
+//        h=new HashMap<>(); h.put("x", 0); h.put("y", 0); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 1); h.put("y", 0); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 0); h.put("y", 1); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 1); h.put("y", 1); coords.add(h); 
+//        h=new HashMap<>(); h.put("x", 2); h.put("y", 0); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 3); h.put("y", 0); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 2); h.put("y", 1); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 3); h.put("y", 1); coords.add(h); 
         ////
     }
     
     public void addShapeToStill(List<HashMap> shapeCoords){
         coords.addAll(shapeCoords);
+    }
+    
+     public void addShapeToStill(Shape shape){
+        for (HashMap i:shape.getCoords()){
+            HashMap h=new HashMap();
+            h.put("x",(Integer)(shape.getXPos())+(Integer)i.get("x"));h.put("y",(Integer)(shape.getYPos())+(Integer)i.get("y"));
+            coords.add(h);
+        }
     }
     
     @Override
@@ -56,7 +64,7 @@ public class Still extends GameEntity{
     public void draw(Graphics g){
         g.setColor(Color.BLUE);
         for (HashMap i:coords){
-            g.fillRect(xPos*scale+(Integer)i.get("x")*scale, yPos*scale+(Integer)i.get("y")*scale, scale, scale);
+            g.fillRect(/*xPos*scale+*/(Integer)i.get("x")*scale, /*yPos*scale+*/(Integer)i.get("y")*scale, scale, scale);
         }
     }
     
@@ -79,7 +87,8 @@ public class Still extends GameEntity{
         if (message.equals("Landed")){
             System.out.println("Landed received + payload");
             //checkSolidLine();
-            addShapeToStill((List<HashMap>)payload);
+            //addShapeToStill((List<HashMap>)payload);
+            addShapeToStill((Shape)payload);
             System.out.println("Still size="+coords.size());
             getCountXGroupByY();
         }

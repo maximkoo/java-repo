@@ -7,18 +7,22 @@ package jtt2;
 
 import java.util.HashMap;
 
-public class TShape extends Shape{
-    public TShape(ObjectPool obj){
+/**
+ *
+ * @author max
+ */
+public class ZShape2 extends Shape{
+     public ZShape2(ObjectPool obj){
         super(obj);
         xSize=3;
-        ySize=3;   
+        ySize=3;
         xPos=10;
         yPos=0;
         HashMap<String, Integer> h;
         h=new HashMap<>(); h.put("x", 1); h.put("y", 0); coords.add(h);
         h=new HashMap<>(); h.put("x", 1); h.put("y", 1); coords.add(h);
-        h=new HashMap<>(); h.put("x", 1); h.put("y", 2); coords.add(h);
-        h=new HashMap<>(); h.put("x", 2); h.put("y", 1); coords.add(h);
-        System.out.println("TShape created and added to Game Entities");      
+        h=new HashMap<>(); h.put("x", 0); h.put("y", 1); coords.add(h);
+        h=new HashMap<>(); h.put("x", 0); h.put("y", 2); coords.add(h);
+        System.out.println("ZShape2 created and added to Game Entities");
     }
 }

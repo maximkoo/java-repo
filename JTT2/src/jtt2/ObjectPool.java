@@ -9,13 +9,15 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  *
  * @author max
  */
 public class ObjectPool {
-    private final List<GameEntity> entities = new ArrayList<>();
+    private final List<GameEntity> entities = new CopyOnWriteArrayList<>();
+    public ShapeFactory shapeFactory;
     
     public void registerEntity(GameEntity e){
         entities.add(e);
@@ -48,7 +50,7 @@ public class ObjectPool {
         boolean result=true;        
         for (GameEntity g: entities){
             if (!g.getClass().getSimpleName().equals("Still")) continue;
-            System.out.println("Still entity detected");
+            //System.out.println("Still entity detected");
             for (HashMap i:c){
                 for (HashMap j:g.getCoords()){
 //                    System.out.println("x1="+((int)xPos+(int)(i.get("x"))));
@@ -58,12 +60,26 @@ public class ObjectPool {
 //                    System.out.println("---");
                     if (((int)xPos+(int)(i.get("x")))==(((int)g.getXPos()+(int)(j.get("x")))) && (yPos+(int)(i.get("y")))==(((int)g.getYPos()+(int)(j.get("y"))))){
                         result=false;
-                        System.out.println("Intersection false");
+                        System.out.println("Intersection detected");
                     }
                 }
                 //System.out.println("-------");
             }
         }
         return result;
+    }
+    
+    public void setShapeFactory(ShapeFactory fac){
+        this.shapeFactory=fac;
+    };
+    
+    public void generate(){
+        removeShapeEntities();
+        Shape q=shapeFactory.generate();
+        System.out.println("Object pool has generated a new shape, of type ");//+q.getClass().getSimpleName());
+    }
+    
+    public void removeShapeEntities(){
+        entities.removeIf(q->q.getClass().getSuperclass().getSimpleName().equals("Shape"));
     }
 }
