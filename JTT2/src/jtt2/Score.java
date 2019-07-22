@@ -20,6 +20,6 @@ public class Score extends GameEntity{
     
     @Override
     public void process(){
-        System.out.println("Entity processed, class="+this.getClass().getName());     
+        //System.out.println("Entity processed, class="+this.getClass().getName());     
     }
 }

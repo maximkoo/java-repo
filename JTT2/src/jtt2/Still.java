@@ -26,6 +26,7 @@ public class Still extends GameEntity{
         int xPos=0;
         int yPos=0;
         int scale=Constants.scale;
+        int[] lines=new int[Constants.gfYSize];
     
     /////////////
     public Still(ObjectPool obj){
@@ -53,12 +54,14 @@ public class Still extends GameEntity{
             HashMap h=new HashMap();
             h.put("x",(Integer)(shape.getXPos())+(Integer)i.get("x"));h.put("y",(Integer)(shape.getYPos())+(Integer)i.get("y"));
             coords.add(h);
-        }
+        }    
+        System.out.println(coords.toString());
+        countLines();        
     }
     
     @Override
     public void process(){
-        System.out.println("Entity processed, class="+this.getClass().getName());     
+        //System.out.println("Entity processed, class="+this.getClass().getName());     
     }
     
     public void draw(Graphics g){
@@ -106,6 +109,47 @@ public class Still extends GameEntity{
          System.out.println("SORTED2!");
     }
 
+    private void countLines(){
+//        for (int i: lines){
+//            i=0;
+//        }
+        for (int i=0; i<lines.length; i++){
+            lines[i]=0;
+        }
+        for (HashMap i: coords){
+            lines[(int)(i.get("y"))]+=1;
+        }
+        
+        for (int i=0; i<lines.length; i++){
+            System.out.println("Line "+i+", count="+lines[i]);
+        }
+        dropLines();
+    }
+    
+    private void dropLines(){     
+        List<HashMap> drop=new ArrayList<HashMap>();
+        for (int i=0; i<lines.length; i++){
+            if (lines[i]==(int)(Constants.gfXSize-1)){
+               for (HashMap c:coords){
+                   if ((int)(c.get("y"))==i){
+                        drop.add(c);
+                    }
+               }
+               coords.removeAll(drop);
+               drop.clear();
+               compressLines(i);
+            }
+        }
+    }
+    
+    private void compressLines(int y){
+        for (HashMap i:coords){
+            if ((int)i.get("y")<y){
+                i.put("y",(Integer)(i.get("y"))+1);
+            }
+        }
+    }
+    
     private void getCountXGroupByY(){
         Map<Integer, Long> grouped=coords.stream().collect(Collectors.groupingBy(foo->(Integer)(foo.get("y")), Collectors.counting()));
         System.out.println("Grouped! Size="+grouped.size());

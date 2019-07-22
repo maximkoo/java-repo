@@ -12,7 +12,6 @@ public class Cube extends Shape{
         super(obj);
         xSize=2;
         ySize=2;
-        xPos=10;
         yPos=0;
         HashMap<String, Integer> h;
         h=new HashMap<>(); h.put("x", 0); h.put("y", 0); coords.add(h);

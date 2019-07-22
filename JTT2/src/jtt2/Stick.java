@@ -17,7 +17,6 @@ public class Stick extends Shape{
         super(obj);
         xSize=5;
         ySize=4;
-        xPos=10;
         yPos=0;
         HashMap<String, Integer> h;
         h=new HashMap<>(); h.put("x", 2); h.put("y", 1); coords.add(h);

@@ -58,7 +58,7 @@ public class JTT2 {
                 //panel1.repaint();
                 runEntities();
                 panel1.repaint();
-                System.out.println(c1.getTime());
+                //System.out.println(c1.getTime());
                 c2=c1;
                 //c2.add(Calendar.SECOND, 1);
                 c2.setTimeInMillis(c2.getTimeInMillis() + Constants.speed);

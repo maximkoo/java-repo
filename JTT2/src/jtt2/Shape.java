@@ -18,7 +18,7 @@ import java.util.List;
 public class Shape extends GameEntity{
     protected int xSize=0;
     protected int ySize=0; 
-    int xPos=10;
+    int xPos=Constants.gfXSize/2;
     int yPos=10;
     protected int nextXPos;
     protected int nextYPos;
@@ -35,9 +35,9 @@ public class Shape extends GameEntity{
     public void process(){
         //this.move("down"); //--<<---!!!
         this.fall();
-        System.out.println("Shape processed, class="+this.getClass().getName());   
+        //System.out.println("Shape processed, class="+this.getClass().getName());   
         Integer maxY=(Integer)coords.stream().max((a1,a2)->(Integer)a1.get("y")>(Integer)a2.get("y")?1:-1).get().get("y");
-        System.out.println("maxY="+(yPos+maxY));
+        //System.out.println("maxY="+(yPos+maxY));
         //if (yPos+maxY>Constants.gfYSize-1) {
             //obj.informObjects("Landed");
             //obj.informObjectsPayload("Landed", (Object)coords);

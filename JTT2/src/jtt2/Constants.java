@@ -9,7 +9,7 @@ package jtt2;
 /* @author kopa */
 public class Constants {
     public static int speed=500;
-    public static int gfXSize=20;
+    public static int gfXSize=8;
     public static int gfYSize=20;
     public static int gfBorderLeft=1;
     public static int gfBorderRight=1;
