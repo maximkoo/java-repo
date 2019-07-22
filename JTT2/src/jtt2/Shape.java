@@ -142,8 +142,10 @@ public class Shape extends GameEntity{
         for (HashMap i:coords){
             HashMap h=new HashMap();
             int xs=(Integer)(i.get("x"));
-            h.put("x", (xSize-1)-(Integer)(i.get("y")));
-            h.put("y", xs);
+            //h.put("x", (xSize-1)-(Integer)(i.get("y"))); // clockwise
+            //h.put("y", xs);
+            h.put("x", (Integer)(i.get("y"))); // anti-clockwise
+            h.put("y", (ySize-1)-xs);
             coords2.add(h);
         }
         return coords2;

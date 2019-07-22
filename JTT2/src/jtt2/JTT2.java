@@ -94,6 +94,7 @@ public class JTT2 {
             if (e.getKeyCode()==KeyEvent.VK_LEFT) {obj.informObjects("move_left");}
             if (e.getKeyCode()==KeyEvent.VK_RIGHT) {obj.informObjects("move_right");}
             if (e.getKeyCode()==KeyEvent.VK_UP) {obj.informObjects("rotate");}
+            if (e.getKeyCode()==KeyEvent.VK_DOWN) {obj.informObjects("drop");}
             if (e.getKeyCode()==KeyEvent.VK_SPACE) {obj.informObjects("drop");}
             panel1.repaint();
         }
