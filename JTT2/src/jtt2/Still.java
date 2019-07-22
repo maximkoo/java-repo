@@ -34,15 +34,30 @@ public class Still extends GameEntity{
         this.obj=obj;
         ////
 //        HashMap<String, Integer> h;
-//        h=new HashMap<>(); h.put("x", 0); h.put("y", 0); coords.add(h);
-//        h=new HashMap<>(); h.put("x", 1); h.put("y", 0); coords.add(h);
-//        h=new HashMap<>(); h.put("x", 0); h.put("y", 1); coords.add(h);
-//        h=new HashMap<>(); h.put("x", 1); h.put("y", 1); coords.add(h); 
-//        h=new HashMap<>(); h.put("x", 2); h.put("y", 0); coords.add(h);
-//        h=new HashMap<>(); h.put("x", 3); h.put("y", 0); coords.add(h);
-//        h=new HashMap<>(); h.put("x", 2); h.put("y", 1); coords.add(h);
-//        h=new HashMap<>(); h.put("x", 3); h.put("y", 1); coords.add(h); 
-        ////
+//        //h=new HashMap<>(); h.put("x", 0); h.put("y", 0); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 1); h.put("y", Constants.gfYSize-2); coords.add(h);
+//         h=new HashMap<>(); h.put("x", 2); h.put("y", Constants.gfYSize-2); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 3); h.put("y", Constants.gfYSize-2); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 4); h.put("y", Constants.gfYSize-2); coords.add(h); 
+//        h=new HashMap<>(); h.put("x", 5); h.put("y", Constants.gfYSize-2); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 6); h.put("y", Constants.gfYSize-2); coords.add(h);
+//        //h=new HashMap<>(); h.put("x", 7); h.put("y", Constants.gfYSize-0); coords.add(h);
+//       // h=new HashMap<>(); h.put("x", 8); h.put("y", Constants.gfYSize-0); coords.add(h); 
+//        h=new HashMap<>(); h.put("x", 1); h.put("y", Constants.gfYSize-1); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 3); h.put("y", Constants.gfYSize-1); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 2); h.put("y", Constants.gfYSize-1); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 4); h.put("y", Constants.gfYSize-1); coords.add(h); 
+//        h=new HashMap<>(); h.put("x", 5); h.put("y", Constants.gfYSize-1); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 6); h.put("y", Constants.gfYSize-1); coords.add(h);
+//        //h=new HashMap<>(); h.put("x", 7); h.put("y", Constants.gfYSize-1); coords.add(h);
+//        //h=new HashMap<>(); h.put("x", 8); h.put("y", 1); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 1); h.put("y", Constants.gfYSize-3); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 3); h.put("y", Constants.gfYSize-3); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 2); h.put("y", Constants.gfYSize-3); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 4); h.put("y", Constants.gfYSize-3); coords.add(h); 
+//        h=new HashMap<>(); h.put("x", 5); h.put("y", Constants.gfYSize-3); coords.add(h);
+//        h=new HashMap<>(); h.put("x", 6); h.put("y", Constants.gfYSize-3); coords.add(h);
+//        //
     }
     
     public void addShapeToStill(List<HashMap> shapeCoords){
