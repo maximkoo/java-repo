@@ -27,12 +27,14 @@ public class ObjectPool {
     public void informObjects(String message){
         for (GameEntity i: entities){
             i.inform(message);
+            System.out.println(i.getClass().getSimpleName() + " informed with message: "+message);
         }
     }
     
     public void informObjectsPayload(String message, Object payload){
         for (GameEntity i: entities){
             i.informPayload(message, payload);
+            System.out.println(i.getClass().getSimpleName() + " informed with message: "+message);
         }
     }
     

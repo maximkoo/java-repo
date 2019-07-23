@@ -104,8 +104,6 @@ public class Shape extends GameEntity{
         
         xPos=a[0];
         yPos=a[1];
-        //xPos=nextXPos;
-        //yPos=nextYPos;
     }   
     
     private Integer[] move(String dir, Integer[] pos){
@@ -161,45 +159,6 @@ public class Shape extends GameEntity{
         return result; 
     }
     
-//    private boolean checkMovement(String dir, int xPos, int yPos, List<HashMap> coords){
-//        boolean result=true; 
-//        Integer[] a=move(dir, new Integer[]{xPos,yPos});
-//        int xPos2=a[0];
-//        int yPos2=a[1];
-//        for (HashMap i: coords){
-//            if (xPos2+(Integer)(i.get("x"))<0+Constants.gfBorderLeft) result=false;
-//            if (xPos2+(Integer)(i.get("x"))>Constants.gfXSize-Constants.gfBorderRight) result=false;
-//            if (yPos2+(Integer)(i.get("y"))>Constants.gfYSize-Constants.gfBorderRight) result=false;
-//        } 
-//        return result; 
-//    }
-    
-//    private boolean checkRotation(List<HashMap> coords){
-//        boolean result=true; 
-//        
-//        List<HashMap> coords2=new ArrayList<HashMap>();
-//        
-//        //coords2.addAll(coords); //Так нельзя ((
-//       
-//        for (HashMap i:coords){//Клонирование вручную ))
-//            HashMap c2=new HashMap();
-//            c2.put("x",i.get("x"));
-//            c2.put("y",i.get("y"));
-//            coords2.add(c2);
-//        }
-//        coords2=rotate(coords2);
-////        System.out.println("Coords2");
-////        for (HashMap i:coords2){
-////            System.out.println("x="+i.get("x")+", y="+i.get("y"));
-////        }
-//        for (HashMap i: coords2){
-//            if (xPos+(Integer)(i.get("x"))<0+Constants.gfBorderLeft) result=false;
-//            if (xPos+(Integer)(i.get("x"))>Constants.gfXSize-Constants.gfBorderRight) result=false;
-//            if (yPos+(Integer)(i.get("y"))>Constants.gfYSize-Constants.gfBorderRight) result=false;
-//        } 
-//        return result; 
-//    }
-    
     private boolean checkOnStill(int xPos, int yPos, List<HashMap> c){
         boolean result=obj.checkIntersection(xPos, yPos, c);
         return result;
@@ -212,6 +171,7 @@ public class Shape extends GameEntity{
               yPos+=1;
              }
           while ((checkBorder(xPos, yPos+1, coords) && checkOnStill(xPos, yPos+1, coords)));
+          //obj.informObjects("Shape dropped");
     }
     
     public int getXPos(){

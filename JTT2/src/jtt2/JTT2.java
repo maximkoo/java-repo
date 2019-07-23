@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Calendar;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 /**
  *
@@ -42,6 +43,8 @@ public class JTT2 {
         f.setSize(500,500);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.add(panel1);
+        //JTextField scoreField = new JTextField(15);
+        //f.add(scoreField);
         f.setVisible(true);
 
         f.addKeyListener(new KeyListener1());

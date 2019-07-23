@@ -95,8 +95,6 @@ public class Still extends GameEntity{
     public void inform(String message){
         if (message.equals("Landed")){
             System.out.println("Landed received");
-            //checkSolidLine();
-            //getCountXGroupByY();
         }
     }
     
@@ -104,8 +102,6 @@ public class Still extends GameEntity{
     public void informPayload(String message, Object payload){
         if (message.equals("Landed")){
             System.out.println("Landed received + payload");
-            //checkSolidLine();
-            //addShapeToStill((List<HashMap>)payload);
             addShapeToStill((Shape)payload);
             System.out.println("Still size="+coords.size());
             getCountXGroupByY();
@@ -135,26 +131,29 @@ public class Still extends GameEntity{
             lines[(int)(i.get("y"))]+=1;
         }
         
-        for (int i=0; i<lines.length; i++){
-            System.out.println("Line "+i+", count="+lines[i]);
-        }
+//        for (int i=0; i<lines.length; i++){
+//            System.out.println("Line "+i+", count="+lines[i]);
+//        }
         dropLines();
     }
     
     private void dropLines(){     
         List<HashMap> drop=new ArrayList<HashMap>();
+        int lineCount=0;
         for (int i=0; i<lines.length; i++){
             if (lines[i]==(int)(Constants.gfXSize-1)){
                for (HashMap c:coords){
                    if ((int)(c.get("y"))==i){
-                        drop.add(c);
+                        drop.add(c);                        
                     }
                }
                coords.removeAll(drop);
                drop.clear();
                compressLines(i);
+               lineCount+=1;
             }
         }
+        obj.informObjectsPayload("Line Dropped", lineCount);
     }
     
     private void compressLines(int y){
