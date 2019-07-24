@@ -5,6 +5,7 @@
  */
 package jtt2;
 
+import java.awt.Color;
 import java.util.HashMap;
 
 /**
@@ -17,6 +18,7 @@ public class ZShape2 extends Shape{
         xSize=3;
         ySize=3;
         yPos=0;
+        shapeColor=Color.MAGENTA;
         HashMap<String, Integer> h;
         h=new HashMap<>(); h.put("x", 1); h.put("y", 0); coords.add(h);
         h=new HashMap<>(); h.put("x", 1); h.put("y", 1); coords.add(h);

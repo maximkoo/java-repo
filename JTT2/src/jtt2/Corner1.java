@@ -5,6 +5,7 @@
  */
 package jtt2;
 
+import java.awt.Color;
 import java.util.HashMap;
 
 /**
@@ -12,11 +13,12 @@ import java.util.HashMap;
  * @author max
  */
 public class Corner1 extends Shape{
-     public Corner1(ObjectPool obj){
+    public Corner1(ObjectPool obj){
         super(obj);
         xSize=3;
         ySize=3;
-        yPos=0;
+        yPos=0;        
+        shapeColor=Color.ORANGE;
         HashMap<String, Integer> h;
         h=new HashMap<>(); h.put("x", 0); h.put("y", 0); coords.add(h);
         h=new HashMap<>(); h.put("x", 1); h.put("y", 0); coords.add(h);

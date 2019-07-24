@@ -10,6 +10,7 @@ package jtt2;
  *
  * @author max
  */
+import java.awt.Color;
 import java.util.HashMap;
 
 public class Stick extends Shape{
@@ -18,6 +19,7 @@ public class Stick extends Shape{
         xSize=5;
         ySize=4;
         yPos=0;
+        shapeColor=Color.YELLOW;
         HashMap<String, Integer> h;
         h=new HashMap<>(); h.put("x", 2); h.put("y", 1); coords.add(h);
         h=new HashMap<>(); h.put("x", 2); h.put("y", 2); coords.add(h);

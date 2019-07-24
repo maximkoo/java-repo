@@ -19,12 +19,12 @@ public class Shape extends GameEntity{
     protected int xSize=0;
     protected int ySize=0; 
     int xPos=Constants.gfXSize/2;
-    int yPos=10;
+    int yPos=0;
     protected int nextXPos;
     protected int nextYPos;
-    protected int scale=10;
+    protected int scale=Constants.scale;
     protected List<HashMap> coords=new ArrayList<>();    
-    protected int shapeColor;
+    protected Color shapeColor;
     private final ObjectPool obj;
     public Shape(ObjectPool obj){
         super(obj);
@@ -46,7 +46,8 @@ public class Shape extends GameEntity{
     
     @Override
     public void draw(Graphics g){
-        g.setColor(Color.red);
+        //g.setColor(Color.red);
+        g.setColor(this.shapeColor);
         for (HashMap i:coords){
             g.fillRect(xPos*scale+(Integer)i.get("x")*scale, yPos*scale+(Integer)i.get("y")*scale, scale, scale);
         }
@@ -67,7 +68,7 @@ public class Shape extends GameEntity{
     
     public void printCoords(){
         for (HashMap i:coords){
-            System.out.println("x="+i.get("x")+", y="+i.get("y"));
+            //System.out.println("x="+i.get("x")+", y="+i.get("y"));
         }
     }
     
@@ -129,8 +130,8 @@ public class Shape extends GameEntity{
         if (!checkOnStill(xPos, yPos, coords2)) return;
         
         coords=coords2;
-        System.out.println("Rotated");
-        printCoords();
+        //System.out.println("Rotated");
+        //printCoords();
     }
     
     private List<HashMap> rotate(List<HashMap> coords){
@@ -181,5 +182,10 @@ public class Shape extends GameEntity{
     public int getYPos(){
         return yPos;
     }
+    
+    public Color getShapeColor(){
+        return shapeColor;
+    }
+    
     
 }

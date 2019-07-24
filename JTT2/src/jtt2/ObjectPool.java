@@ -21,20 +21,20 @@ public class ObjectPool {
     
     public void registerEntity(GameEntity e){
         entities.add(e);
-        System.out.println("Game entity of type "+e.getClass().getName()+" created and added to Game Entities");
+        //System.out.println("Game entity of type "+e.getClass().getName()+" created and added to Game Entities");
     }
     
     public void informObjects(String message){
         for (GameEntity i: entities){
             i.inform(message);
-            System.out.println(i.getClass().getSimpleName() + " informed with message: "+message);
+            //System.out.println(i.getClass().getSimpleName() + " informed with message: "+message);
         }
     }
     
     public void informObjectsPayload(String message, Object payload){
         for (GameEntity i: entities){
             i.informPayload(message, payload);
-            System.out.println(i.getClass().getSimpleName() + " informed with message: "+message);
+            //System.out.println(i.getClass().getSimpleName() + " informed with message: "+message);
         }
     }
     
@@ -78,7 +78,7 @@ public class ObjectPool {
     public void generate(){
         removeShapeEntities();
         Shape q=shapeFactory.generate();
-        System.out.println("Object pool has generated a new shape, of type ");//+q.getClass().getSimpleName());
+        //System.out.println("Object pool has generated a new shape, of type ");//+q.getClass().getSimpleName());
     }
     
     public void removeShapeEntities(){

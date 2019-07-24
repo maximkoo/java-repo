@@ -44,9 +44,9 @@ public class Score extends GameEntity{
     @Override
     public void draw(Graphics g){
         g.setColor(Color.black);
-        g.drawString("Score: "+score, 5, Constants.gfYSize*Constants.scale+Constants.scale*5);
-        g.drawString("Shapes dropped: "+shapesDropped, 5, Constants.gfYSize*Constants.scale+Constants.scale*10);
-        g.drawString("Lines dropped: "+linesDropped, 5, Constants.gfYSize*Constants.scale+Constants.scale*15);
+        g.drawString("Score: "+score, 5, Constants.gfYSize*Constants.scale+Constants.scale*2);
+        g.drawString("Shapes dropped: "+shapesDropped, 5, Constants.gfYSize*Constants.scale+Constants.scale*4);
+        g.drawString("Lines dropped: "+linesDropped, 5, Constants.gfYSize*Constants.scale+Constants.scale*6);
     }
     
     @Override

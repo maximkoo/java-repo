@@ -40,7 +40,7 @@ public class JTT2 {
         obj.setShapeFactory(fac);
         a=new Still(obj);
 
-        f.setSize(500,500);
+        f.setSize(Constants.gfXSize*(Constants.scale+5),Constants.gfYSize*(Constants.scale+10));
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.add(panel1);
         //JTextField scoreField = new JTextField(15);
@@ -55,12 +55,15 @@ public class JTT2 {
         c2.setTimeInMillis(c2.getTimeInMillis() + Constants.speed);
         int i=0;
         System.out.println("Total "+obj.getEntities().size()+" entities");
-        while(go){
+        while(true){
+            //if (!go)continue; 
             c1 = Calendar.getInstance();
             if (c1.compareTo(c2)>0){            
                 //panel1.repaint();
-                runEntities();
-                panel1.repaint();
+                if (go) {
+                    runEntities();
+                    panel1.repaint();
+                    }
                 //System.out.println(c1.getTime());
                 c2=c1;
                 //c2.add(Calendar.SECOND, 1);
@@ -99,6 +102,7 @@ public class JTT2 {
             if (e.getKeyCode()==KeyEvent.VK_UP) {obj.informObjects("rotate");}
             if (e.getKeyCode()==KeyEvent.VK_DOWN) {obj.informObjects("drop");}
             if (e.getKeyCode()==KeyEvent.VK_SPACE) {obj.informObjects("drop");}
+            if (e.getKeyCode()==KeyEvent.VK_P) {go=!go;}
             panel1.repaint();
         }
 

@@ -13,5 +13,5 @@ public class Constants {
     public static int gfYSize=30;
     public static int gfBorderLeft=1;
     public static int gfBorderRight=1;
-    public static int scale=10;
+    public static int scale=20;
 }

@@ -60,17 +60,19 @@ public class Still extends GameEntity{
 //        //
     }
     
-    public void addShapeToStill(List<HashMap> shapeCoords){
-        coords.addAll(shapeCoords);
-    }
+//    public void addShapeToStill(List<HashMap> shapeCoords){
+//        coords.addAll(shapeCoords);
+//    }
     
      public void addShapeToStill(Shape shape){
         for (HashMap i:shape.getCoords()){
             HashMap h=new HashMap();
-            h.put("x",(Integer)(shape.getXPos())+(Integer)i.get("x"));h.put("y",(Integer)(shape.getYPos())+(Integer)i.get("y"));
+            h.put("x",(Integer)(shape.getXPos())+(Integer)i.get("x"));
+            h.put("y",(Integer)(shape.getYPos())+(Integer)i.get("y"));
+            h.put("c",(Color)(shape.getShapeColor()));
             coords.add(h);
         }    
-        System.out.println(coords.toString());
+        //System.out.println(coords.toString());
         countLines();        
     }
     
@@ -80,8 +82,9 @@ public class Still extends GameEntity{
     }
     
     public void draw(Graphics g){
-        g.setColor(Color.BLUE);
+        //g.setColor(Color.BLUE);
         for (HashMap i:coords){
+            g.setColor((Color)(i.get("c")));
             g.fillRect(/*xPos*scale+*/(Integer)i.get("x")*scale, /*yPos*scale+*/(Integer)i.get("y")*scale, scale, scale);
         }
     }
@@ -94,7 +97,7 @@ public class Still extends GameEntity{
     @Override
     public void inform(String message){
         if (message.equals("Landed")){
-            System.out.println("Landed received");
+            //System.out.println("Landed received");
         }
     }
     
@@ -103,7 +106,7 @@ public class Still extends GameEntity{
         if (message.equals("Landed")){
             System.out.println("Landed received + payload");
             addShapeToStill((Shape)payload);
-            System.out.println("Still size="+coords.size());
+            //System.out.println("Still size="+coords.size());
             getCountXGroupByY();
         }
     }
@@ -166,8 +169,8 @@ public class Still extends GameEntity{
     
     private void getCountXGroupByY(){
         Map<Integer, Long> grouped=coords.stream().collect(Collectors.groupingBy(foo->(Integer)(foo.get("y")), Collectors.counting()));
-        System.out.println("Grouped! Size="+grouped.size());
-        System.out.println(grouped.toString());
+        //System.out.println("Grouped! Size="+grouped.size());
+        //System.out.println(grouped.toString());
     }
     
     private void getDistinctY(){
