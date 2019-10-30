@@ -18,6 +18,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class ObjectPool {
     private final List<GameEntity> entities = new CopyOnWriteArrayList<>();
     public ShapeFactory shapeFactory;
+    boolean gameOver=false;
     
     public void registerEntity(GameEntity e){
         entities.add(e);
@@ -77,6 +78,7 @@ public class ObjectPool {
     
     public void generate(){
         removeShapeEntities();
+        if (gameOver){return;}        
         Shape q=shapeFactory.generate();
         //System.out.println("Object pool has generated a new shape, of type ");//+q.getClass().getSimpleName());
     }
@@ -84,4 +86,12 @@ public class ObjectPool {
     public void removeShapeEntities(){
         entities.removeIf(q->q.getClass().getSuperclass().getSimpleName().equals("Shape"));
     }
+    
+    public void setGameOver(){
+        gameOver=true;
+    } 
+    
+    public boolean getGameOver(){
+        return gameOver;
+    } 
 }

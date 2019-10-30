@@ -26,6 +26,7 @@ public class Shape extends GameEntity{
     protected List<HashMap> coords=new ArrayList<>();    
     protected Color shapeColor;
     private final ObjectPool obj;
+    
     public Shape(ObjectPool obj){
         super(obj);
         this.obj=obj;
@@ -98,9 +99,14 @@ public class Shape extends GameEntity{
             }
         if (!checkOnStill(a[0], a[1], coords)) //return;
             {
+            System.out.println("Hit on fall, x="+a[0]+" "+a[1]);
+            if (a[1]==1)
+                {obj.informObjects("Game over"); }
+            else {
                 obj.informObjectsPayload("Landed", (Object)this);
                 obj.generate();
                 return;
+                }
             }
         
         xPos=a[0];
@@ -166,12 +172,12 @@ public class Shape extends GameEntity{
     }  
     
     private void drop(){
-          do {
+          while ((checkBorder(xPos, yPos+1, coords) && checkOnStill(xPos, yPos+1, coords))) {
               //move("down");
               //fall();
               yPos+=1;
              }
-          while ((checkBorder(xPos, yPos+1, coords) && checkOnStill(xPos, yPos+1, coords)));
+          //while ((checkBorder(xPos, yPos+1, coords) && checkOnStill(xPos, yPos+1, coords)));
           //obj.informObjects("Shape dropped");
     }
     

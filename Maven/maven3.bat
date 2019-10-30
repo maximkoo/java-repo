@@ -1,0 +1,1 @@
+mvn archetype:generate -DgroupId=ru.maximkoo -DartifactId=Project3 -DarchetypeArtifactId=maven-archetype-site -DinteractiveMode=false

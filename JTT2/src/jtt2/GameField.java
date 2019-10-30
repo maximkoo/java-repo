@@ -7,6 +7,7 @@
 package jtt2;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 /* @author kopa */
@@ -16,6 +17,7 @@ public class GameField extends GameEntity{
     int gfXSize=Constants.gfXSize; 
     int gfYSize=Constants.gfYSize;
     int scale=Constants.scale;
+    boolean gameOver=false;
 
     public GameField(ObjectPool obj) {
         super(obj);
@@ -35,5 +37,18 @@ public class GameField extends GameEntity{
         for (int i=0; i<=gfXSize; i++){
             g.fillRect(i*scale, gfYSize*scale, scale, scale);
         }
+        if (obj.getGameOver()){
+            g.setColor(Color.red);
+            g.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+            //g.setFont(new Font("Times New Roman", Font.BOLD, 20));
+            g.drawString("GAME OVER", 80,100);
+        }
     }
+    
+    @Override
+    public void inform(String message){ //notify
+        if (message.equals("Game over")){
+            //gameOver=true;
+            obj.setGameOver();} 
+    };
 }

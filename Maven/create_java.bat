@@ -1,0 +1,1 @@
+mvn archetype:generate -DgroupId=ru.maximkoo -DartifactId=gnrc -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
