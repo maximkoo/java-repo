@@ -134,13 +134,13 @@ public class Still extends GameEntity{
             lines[(int)(i.get("y"))]+=1;
         }
         
-//        for (int i=0; i<lines.length; i++){
+//        for (int i=0; i<lines.le  ngth; i++){
 //            System.out.println("Line "+i+", count="+lines[i]);
 //        }
         dropLines();
     }
     
-    private void dropLines(){     
+    private void dropLines(){
         List<HashMap> drop=new ArrayList<HashMap>();
         int lineCount=0;
         for (int i=0; i<lines.length; i++){
@@ -155,7 +155,7 @@ public class Still extends GameEntity{
                compressLines(i);
                lineCount+=1;
             }
-        }
+        }  
         obj.informObjectsPayload("Line Dropped", lineCount);
     }
     

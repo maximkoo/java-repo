@@ -2,22 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/max/Documents/NetBeansProjects/JTT2/src/jtt2/TShape.java</file>
-            <file>file:/C:/Users/max/Documents/NetBeansProjects/JTT2/src/jtt2/JTT2.java</file>
-            <file>file:/C:/Users/max/Documents/NetBeansProjects/JTT2/src/jtt2/Constants.java</file>
-            <file>file:/C:/Users/max/Documents/NetBeansProjects/JTT2/src/jtt2/ZShape1.java</file>
-            <file>file:/C:/Users/max/Documents/NetBeansProjects/JTT2/src/jtt2/Still.java</file>
-            <file>file:/C:/Users/max/Documents/NetBeansProjects/JTT2/src/jtt2/Score.java</file>
-            <file>file:/C:/Users/max/Documents/NetBeansProjects/JTT2/src/jtt2/ZShape2.java</file>
-            <file>file:/C:/Users/max/Documents/NetBeansProjects/JTT2/src/jtt2/ShapeFactory.java</file>
-            <file>file:/C:/Users/max/Documents/NetBeansProjects/JTT2/src/jtt2/GameField.java</file>
-            <file>file:/C:/Users/max/Documents/NetBeansProjects/JTT2/src/jtt2/Corner1.java</file>
-            <file>file:/C:/Users/max/Documents/NetBeansProjects/JTT2/src/jtt2/Corner2.java</file>
-            <file>file:/C:/Users/max/Documents/NetBeansProjects/JTT2/src/jtt2/GameEntity.java</file>
-            <file>file:/C:/Users/max/Documents/NetBeansProjects/JTT2/src/jtt2/Shape.java</file>
-            <file>file:/C:/Users/max/Documents/NetBeansProjects/JTT2/src/jtt2/ObjectPool.java</file>
-            <file>file:/C:/Users/max/Documents/NetBeansProjects/JTT2/src/jtt2/Cube.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
